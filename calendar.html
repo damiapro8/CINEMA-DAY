@@ -5,32 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendari de Torns - CINEMA DAY</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-        // Configura amb les teves credencials de Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBk5zHrSflhQ86zgsiqSPIZuk_89jc5fwQ",
-            authDomain: "cinemaday-e68f3.firebaseapp.com",
-            projectId: "cinemaday-e68f3",
-            storageBucket: "cinemaday-e68f3.firebasestorage.app",
-            messagingSenderId: "690653919118",
-            appId: "1:690653919118:web:d5adaa4bf81261858f96df",
-            measurementId: "G-HZ9Y4DMDS3"
-        };
-
-        // Inicialitza Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        window.db = db; // Per accedir des de script.js
-    </script>
+</head>
 </head>
 <body>
     <h1>Calendari de Torns</h1>
-    <p>Aquí tens el calendari dels torns per seleccionar la pel·lícula cada divendres. Les pel·lícules es guarden a Firebase i es comparteixen amb la família en temps real.</p>
     <table id="calendar-table">
         <thead>
             <tr>
@@ -84,7 +62,7 @@
         </tbody>
     </table>
     <button onclick="window.location.href='index.html'">Tornar</button>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html></content>
 <!-- <parameter name="filePath">c:\Users\04tur\OneDrive\Escritorio\Damià\altres projectes\pelicules\calendar.html -->
