@@ -1,7 +1,3 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
 // Configura amb les teves credencials de Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBk5zHrSflhQ86zgsiqSPIZuk_89jc5fwQ",
@@ -14,12 +10,12 @@ const firebaseConfig = {
 };
 
 // Inicialitza Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 // Inicia sessió anònima
-signInAnonymously(auth)
+auth.signInAnonymously()
     .then(() => {
         console.log("Usuari autenticat anònimament");
         loadData();
@@ -35,13 +31,14 @@ async function loadData() {
         const dateCell = row.cells[0].textContent;
         const input = row.querySelector('input');
         if (input) {
-            const docRef = doc(db, 'pelicules', dateCell.replace(/\s/g, '-'));
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
+            // Nom de la col·lecció: 'pelicules' (canvia aquí si és diferent a Firestore)
+            const docRef = db.collection('pelicules').doc(dateCell.replace(/\s/g, '-'));
+            const docSnap = await docRef.get();
+            if (docSnap.exists) {
                 input.value = docSnap.data().peli || '';
             }
             input.addEventListener('input', async function() {
-                await setDoc(docRef, { peli: this.value });
+                await docRef.set({ peli: this.value });
             });
         }
     });
