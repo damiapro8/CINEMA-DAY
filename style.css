@@ -143,3 +143,9 @@ button:hover {
 #calendar-table input::placeholder {
     color: #aaaaaa;
 }
+
+#calendar-table input:disabled {
+    background: rgba(255, 255, 255, 0.3);
+    color: #666666;
+    cursor: not-allowed;
+}
